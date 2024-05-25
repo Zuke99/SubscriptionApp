@@ -16,7 +16,7 @@ function Login({ isSignup, onSubmit }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(password === confirmPassword) {
+    if((!isSignup) || password === confirmPassword) {
       onSubmit({ password , username});
     } else {
       alert("Both Passwords are not same");
