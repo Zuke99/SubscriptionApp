@@ -3,9 +3,23 @@ import axios from "axios";
 
 const API_URL = "http://localhost:6001/user/"
 export const registerUser = createAsyncThunk("registerUser", async (data, {rejectWithValue}) => {
-    console.log("Slice", data);
     try{
         const response = await axios.post(API_URL + "register", data);
+        console.log("responseSlice", response)
+        if(response.data.status === "success") {
+            return response.data;
+        } else {
+            return rejectWithValue(response.data.message);
+        }
+    } catch (error) {
+        return rejectWithValue(error.response.data)
+    }
+})
+
+export const loginUser = createAsyncThunk("loginUser", async (data, {rejectWithValue}) => {
+    console.log("Slice", data);
+    try{
+        const response = await axios.post(API_URL + "login", data);
         console.log("responseSlice", response)
         if(response.data.status === "success") {
             return response.data;
@@ -40,6 +54,21 @@ const userAuthSlice = createSlice({
             state.success = true;
         })
         builder.addCase(registerUser.rejected, (state, action) => {
+            state.loading = false;
+            state.error = true;
+            state.registerMessage = action?.payload?.message;
+        });
+
+        builder.addCase(loginUser.pending, (state) => {
+            state.loading = true;
+        })
+        builder.addCase(loginUser.fulfilled, (state, action) => {
+            state.loading = false;
+            state.userInfo = action.payload.data;
+            state.registerMessage = action.payload.message;
+            state.success = true;
+        })
+        builder.addCase(loginUser.rejected, (state, action) => {
             state.loading = false;
             state.error = true;
             state.registerMessage = action?.payload?.message;
