@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function Navbar() {
   const [menuIsOpen, setIsOpen] = useState(false);
   return (
-    <div>
+    <div className="lg:top-0 border">
       <div className="block bg-black h-12 lg:hidden">
         <div className="flex justify-between">
           <button
@@ -38,7 +38,7 @@ function Navbar() {
             menuIsOpen ? "block" : "hidden"
           }`}
         >
-          <div className="text-sm lg:flex-grow">
+          <div className="text-sm lg:flex-grow flex justify-center  ">
             <a
               href="/signin"
               className="block text-fontwhite mt-4 lg:inline-block lg:mt-0 text-white-200 mr-4"
@@ -52,16 +52,10 @@ function Navbar() {
               Sign Up
             </a>
             <a
-              href="/"
-              className="block mt-4 lg:inline-block lg:mt-0 text-white-200 mr-4"
+              href="/view-posts"
+              className="block text-fontwhite mt-4 lg:inline-block lg:mt-0 text-white-200 mr-4"
             >
-              Third Link
-            </a>
-            <a
-              href="/"
-              className="block mt-4 lg:inline-block lg:mt-0 text-white-200 mr-4"
-            >
-              Fourth Link
+              View Posts
             </a>
           </div>
           <div>
