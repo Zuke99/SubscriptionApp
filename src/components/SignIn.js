@@ -8,10 +8,8 @@ function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmission = (data) => {
-    console.log("Login", data);
     if(data?.email){
       dispatch(registerUser(data)).then((result) => {
-        console.log(result)
        handleLogin(data);
       })
     } else {
@@ -21,7 +19,8 @@ function SignIn() {
   const handleLogin = (data) => {
     dispatch(loginUser(data)).then((result) => {
       if(result.payload.message === "User Loggedin Successfully"){
-       navigate("/")
+        localStorage.setItem("user", result.payload.data)
+       navigate("/view-posts")
       } else {
         alert(result.payload.message)
       }
