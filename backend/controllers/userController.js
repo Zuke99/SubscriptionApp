@@ -20,7 +20,20 @@ const loginUser = async (req, res) => {
   }
 }
 
+const getUserInfo = async (req, res) => {
+  try{
+    const result = await UserService.getUserInfo(req.body);
+    if (result)
+      return res.status(200).json({ status: "success", message: "User Loggedin Successfully", data: result });
+    return res.status(500).json({ status: "error", message: "User Details Not found", data: result });
+    
+  } catch (err) {
+    return res.status(500).json({ status: "error", message: err });
+  }
+}
+
 module.exports = {
   registerUser,
-  loginUser
+  loginUser,
+  getUserInfo
 };

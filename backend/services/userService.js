@@ -23,11 +23,13 @@ const userLogin = async(data) => {
        user = await UserModel.findOne({ username : data?.username})
     } else {
       user = await UserModel.findOne({ email: data.email }) 
+
     }
-    if(user && user?.username && user.password === data.password) {
+
+    if(user && user?.username && user?.password === data.password) {
       console.log("User Verified")
       return generateToken(user);
-    } else if (user && user?.email) {
+    } else if (user?.email) {
       return generateToken(user);
     }
     else {
@@ -39,7 +41,14 @@ const userLogin = async(data) => {
   }
 }
 
+
+const getUserInfo = async(data) => {
+  const result = await UserModel.findById(data.userId);
+  return result;
+}
+
 module.exports = {
   addUser,
-  userLogin
+  userLogin,
+  getUserInfo
 };

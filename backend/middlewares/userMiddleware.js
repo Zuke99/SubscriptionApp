@@ -6,8 +6,9 @@ const checkUsernameExists = async (req, res, next) => {
             return res.status(200).json({status: "success", message: 'Username Already Exists'});
         }
     } else {
-        const isEmailExisting = checkEmailExists(req);
+        const isEmailExisting = await checkEmailExists(req);
         if( isEmailExisting ){
+            console.log("Exists", isEmailExisting)
             return res.status(200).json({status: "success", message: 'Email Already Exists'});
         }
     }
@@ -20,8 +21,8 @@ const checkEmailExists = async (req) => {
         if(user) {
             return true;
         }
-        return false;
     }
+    return false;
 }
 
 module.exports = {
