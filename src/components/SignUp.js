@@ -13,7 +13,6 @@ function SignUp() {
         alert(result.payload.message + " Please Login or Choose another Username");
       else if(result.payload.message === "User Registered, Login With Same Credentials"){
         alert(result.payload.message);
-
         navigate('/signin')
         
       }

@@ -33,8 +33,8 @@ function ViewPosts() {
 
     const getAllPosts = () => {
         dispatch(getPost()).then((result) => {
-            setPosts(result.payload.data) 
-            setFilteredPosts(result.payload.data)       
+            setPosts(result?.payload?.data) 
+            setFilteredPosts(result?.payload?.data)       
         })
     }
 
@@ -71,7 +71,7 @@ function ViewPosts() {
       navigate('/signin')
     }
        
-      })
+      
     }
 
 
@@ -155,7 +155,6 @@ function ViewPosts() {
        onClick={(e) => filterPosts("Fully-Exclusive")}
        className='text-fontwhite font-bold w-[50%] bg-purple-gradient rounded-3xl'> Fully Exclusive 😈</button>
       </div>
- post-upload
       <p className='text-fontwhite mt-[2%] text-2xl'> Welcome to Akshara-Exclusive ❤️‍🔥</p>
       <div className='mt-[2%] text-fontwhite bg-black h-[5%] flex justify-center items-center font-xs font-light'>
         <p className=''>Pics you will never find on internet are Here!!</p>
@@ -163,7 +162,6 @@ function ViewPosts() {
 
     <div className='flex flex-col justify-center items-center'>
       {filteredPosts && filteredPosts.map((post) => (
- post-upload
         <div key={post.id} className=' flex-col mt-[5%] text-fontwhite border h-[10%] border-fontwhite bg-black sm:w-[80%] md:w-[60%] lg:w-[30%]'>
 
         <div className='flex mt-[2%]'>
