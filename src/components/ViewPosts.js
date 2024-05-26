@@ -20,8 +20,10 @@ function ViewPosts() {
 
 // eslint-disable-next-line
     useEffect(() => {
+
         getAllPosts()
         getUserData()
+
       // eslint-disable-next-line
     },[])
 
@@ -38,12 +40,16 @@ function ViewPosts() {
 
     const getUserData = async() => {
       const userDetails = getUserDetails();
+
       if(userDetails){
+
+
       const data = {
         userId : userDetails._id
       }
       dispatch(getUser(data)).then((result) => {
         setUnlocked(result.payload.data.unlocked)
+
       })
     }
     }
@@ -52,18 +58,22 @@ function ViewPosts() {
     const handleRevealPicture = (post) => {
       const isLoggedIn = getUserDetails();
       if(isLoggedIn){
-      if(unlocked.includes(post.id)){
+
+        if(unlocked.includes(post.id)){
         const url = "http://localhost:6001/image/get-image/" + post.id;
         setRevealedImage(url);
       } else {      
       getKey(post);
       }
+
     } else {
       alert("Please Login First")
       navigate('/signin')
     }
-     
+       
+      })
     }
+
 
     const getKey = (post) => {
       dispatch(getSecretKey()).then((result) => {
@@ -145,6 +155,7 @@ function ViewPosts() {
        onClick={(e) => filterPosts("Fully-Exclusive")}
        className='text-fontwhite font-bold w-[50%] bg-purple-gradient rounded-3xl'> Fully Exclusive 😈</button>
       </div>
+ post-upload
       <p className='text-fontwhite mt-[2%] text-2xl'> Welcome to Akshara-Exclusive ❤️‍🔥</p>
       <div className='mt-[2%] text-fontwhite bg-black h-[5%] flex justify-center items-center font-xs font-light'>
         <p className=''>Pics you will never find on internet are Here!!</p>
@@ -152,7 +163,9 @@ function ViewPosts() {
 
     <div className='flex flex-col justify-center items-center'>
       {filteredPosts && filteredPosts.map((post) => (
+ post-upload
         <div key={post.id} className=' flex-col mt-[5%] text-fontwhite border h-[10%] border-fontwhite bg-black sm:w-[80%] md:w-[60%] lg:w-[30%]'>
+
         <div className='flex mt-[2%]'>
           <p className='text-xs m-[2%]'>{post.description} - ({post.type})</p>
         </div>

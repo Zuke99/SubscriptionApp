@@ -45,7 +45,7 @@ const verifyPayment = async(data) => {
     //console.log(generated_signature + "..."+)
     let result;
     if(isPaymentAuthnticated) {
-        console.log("Payment Authenticated")
+
         result = await userSchema.findByIdAndUpdate(
             data.userId,
             { $push: { unlocked: data.postId} },
@@ -53,7 +53,6 @@ const verifyPayment = async(data) => {
         )
         
     }
-    console.log("Payment Not Authenticated", data)
 
     return result;
 
